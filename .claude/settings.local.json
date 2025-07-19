@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(mkdir:*)",
-      "WebFetch(domain:qiita.com)"
-    ],
-    "deny": []
-  }
-}
