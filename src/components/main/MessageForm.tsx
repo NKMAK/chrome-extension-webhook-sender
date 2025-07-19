@@ -46,7 +46,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({
         borderColor="green.200"
         _focus={{
           borderColor: "green.500",
-          boxShadow: "0 0 0 1px var(--chakra-colors-green-500)"
+          boxShadow: "0 0 0 1px var(--chakra-colors-green-500)",
         }}
         _placeholder={{ color: "gray.400" }}
       />

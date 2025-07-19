@@ -48,12 +48,7 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
         </Text>
         {selectedWebhook && (
           <HStack gap={1} ml="auto">
-            <Box
-              w={2}
-              h={2}
-              bg={selectedWebhook.color}
-              borderRadius="full"
-            />
+            <Box w={2} h={2} bg={selectedWebhook.color} borderRadius="full" />
             <Text fontSize="xs" color="gray.600" fontWeight="medium">
               {selectedWebhook.name}
             </Text>
@@ -70,7 +65,7 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
           borderColor="blue.200"
           _focus={{
             borderColor: "blue.500",
-            boxShadow: "0 0 0 1px var(--chakra-colors-blue-500)"
+            boxShadow: "0 0 0 1px var(--chakra-colors-blue-500)",
           }}
         >
           <option value="">Choose your destination...</option>
