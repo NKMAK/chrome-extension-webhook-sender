@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Text, HStack, Button, Menu } from "@chakra-ui/react";
+import { Box, Text, HStack, NativeSelect, Button } from "@chakra-ui/react";
+import { LuSend } from "react-icons/lu";
 import type { Webhook } from "../../types/webhook";
 
 type WebhookSelectorProps = {
@@ -16,7 +17,6 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
   loading = false,
 }) => {
   const selectedWebhook = webhooks.find((w) => w.id === selectedWebhookId);
-
   if (loading) {
     return (
       <Box>
@@ -31,54 +31,57 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
   }
 
   return (
-    <Box>
-      <Text mb={2} fontSize="sm" fontWeight="medium">
-        Send to:
-      </Text>
-      <HStack gap={2} align="center">
+    <Box
+      bg="blue.50"
+      borderLeft="4px solid"
+      borderColor="blue.500"
+      pl={4}
+      pr={4}
+      py={3}
+      borderRadius="md"
+      position="relative"
+    >
+      <HStack mb={3} gap={2} align="center">
+        <LuSend size={16} color="var(--chakra-colors-blue-700)" />
+        <Text fontSize="sm" fontWeight="semibold" color="blue.700">
+          Send to
+        </Text>
         {selectedWebhook && (
-          <Box
-            w={3}
-            h={3}
-            bg={selectedWebhook.color}
-            borderRadius="sm"
-            flexShrink={0}
-          />
+          <HStack gap={1} ml="auto">
+            <Box
+              w={2}
+              h={2}
+              bg={selectedWebhook.color}
+              borderRadius="full"
+            />
+            <Text fontSize="xs" color="gray.600" fontWeight="medium">
+              {selectedWebhook.name}
+            </Text>
+          </HStack>
         )}
-        <Menu.Root>
-          <Menu.Trigger
-            disabled={loading}
-            width="full"
-            textAlign="start"
-            px={3}
-            py={2}
-            border="1px solid"
-            borderColor="gray.200"
-            borderRadius="md"
-            bg="white"
-            _hover={{ bg: "gray.50" }}
-            cursor="pointer"
-          >
-            {selectedWebhook ? selectedWebhook.name : "Select webhook..."}
-          </Menu.Trigger>
-          <Menu.Positioner>
-            <Menu.Content>
-              {webhooks.map((webhook) => (
-                <Menu.Item
-                  key={webhook.id}
-                  value={webhook.id}
-                  onClick={() => onWebhookSelect(webhook.id)}
-                >
-                  <HStack gap={2}>
-                    <Box w={2} h={2} bg={webhook.color} borderRadius="sm" />
-                    <Text>{webhook.name}</Text>
-                  </HStack>
-                </Menu.Item>
-              ))}
-            </Menu.Content>
-          </Menu.Positioner>
-        </Menu.Root>
       </HStack>
+      <NativeSelect.Root disabled={loading}>
+        <NativeSelect.Field
+          value={selectedWebhookId ?? ""}
+          onChange={(e) => onWebhookSelect(e.target.value ?? undefined)}
+          bg="white"
+          borderRadius="md"
+          border="1px solid"
+          borderColor="blue.200"
+          _focus={{
+            borderColor: "blue.500",
+            boxShadow: "0 0 0 1px var(--chakra-colors-blue-500)"
+          }}
+        >
+          <option value="">Choose your destination...</option>
+          {webhooks.map((webhook) => (
+            <option key={webhook.id} value={webhook.id}>
+              {webhook.name}
+            </option>
+          ))}
+        </NativeSelect.Field>
+        <NativeSelect.Indicator />
+      </NativeSelect.Root>
     </Box>
   );
 };
