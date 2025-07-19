@@ -2,15 +2,18 @@ import { useState } from "react";
 import { ChakraProvider, Box, Stack, defaultSystem } from "@chakra-ui/react";
 import { MessageForm } from "./components/main/MessageForm";
 import { SendButton } from "./components/main/SendButton";
+import { useSender } from "./hooks/useSender";
+import { useCurrentTab } from "./hooks/useCurrentTab";
 
 function App() {
   const [message, setMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { sendWebhook, isLoading } = useSender();
+  const { tabInfo } = useCurrentTab();
 
-  const handleSend = () => {
-    setIsLoading(true);
-    alert("send button");
-    setIsLoading(false);
+  const handleSend = async () => {
+    if (message.trim()) {
+      await sendWebhook(message, tabInfo);
+    }
   };
 
   return (
