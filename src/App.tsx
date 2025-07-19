@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { ChakraProvider, Box, Stack, Button, HStack, defaultSystem } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Box,
+  Stack,
+  Button,
+  HStack,
+  defaultSystem,
+} from "@chakra-ui/react";
 import { MainPage } from "./pages/MainPage";
 import { SettingsPage } from "./pages/SettingsPage";
 
@@ -27,11 +34,7 @@ function App() {
             </Button>
           </HStack>
 
-          {currentPage === "main" ? (
-            <MainPage />
-          ) : (
-            <SettingsPage />
-          )}
+          {currentPage === "main" ? <MainPage /> : <SettingsPage />}
         </Stack>
       </Box>
     </ChakraProvider>

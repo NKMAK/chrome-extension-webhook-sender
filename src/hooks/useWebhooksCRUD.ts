@@ -1,6 +1,11 @@
-import { useState, useEffect } from 'react';
-import type { Webhook } from '../types/webhook';
-import { getWebhooks, addWebhook, removeWebhook, updateWebhook } from '../utils/storage';
+import { useState, useEffect } from "react";
+import type { Webhook } from "../types/webhook";
+import {
+  getWebhooks,
+  addWebhook,
+  removeWebhook,
+  updateWebhook,
+} from "../utils/storage";
 
 export const useWebhooksCRUD = () => {
   const [webhooks, setWebhooks] = useState<Webhook[]>([]);
@@ -11,7 +16,7 @@ export const useWebhooksCRUD = () => {
       const data = await getWebhooks();
       setWebhooks(data);
     } catch (error) {
-      console.error('Failed to load webhooks:', error);
+      console.error("Failed to load webhooks:", error);
     } finally {
       setLoading(false);
     }
@@ -22,7 +27,7 @@ export const useWebhooksCRUD = () => {
       await addWebhook(webhook);
       await loadWebhooks();
     } catch (error) {
-      console.error('Failed to create webhook:', error);
+      console.error("Failed to create webhook:", error);
     }
   };
 
@@ -31,7 +36,7 @@ export const useWebhooksCRUD = () => {
       await removeWebhook(id);
       await loadWebhooks();
     } catch (error) {
-      console.error('Failed to delete webhook:', error);
+      console.error("Failed to delete webhook:", error);
     }
   };
 
@@ -40,7 +45,7 @@ export const useWebhooksCRUD = () => {
       await updateWebhook(id, updatedWebhook);
       await loadWebhooks();
     } catch (error) {
-      console.error('Failed to update webhook:', error);
+      console.error("Failed to update webhook:", error);
     }
   };
 
@@ -54,6 +59,6 @@ export const useWebhooksCRUD = () => {
     createWebhook,
     deleteWebhook,
     editWebhook,
-    refreshWebhooks: loadWebhooks
+    refreshWebhooks: loadWebhooks,
   };
 };

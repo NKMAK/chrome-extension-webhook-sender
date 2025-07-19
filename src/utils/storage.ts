@@ -1,6 +1,7 @@
-import type { Webhook } from '../types/webhook';
+import type { Webhook } from "../types/webhook";
 
-const getStorageKey = () => import.meta.env.VITE_WEBHOOK_STORAGE_KEY || 'webhooks';
+const getStorageKey = () =>
+  import.meta.env.VITE_WEBHOOK_STORAGE_KEY || "webhooks";
 
 export const getWebhooks = async (): Promise<Webhook[]> => {
   const result = await chrome.storage.sync.get(getStorageKey());
@@ -19,13 +20,16 @@ export const addWebhook = async (webhook: Webhook): Promise<void> => {
 
 export const removeWebhook = async (id: string): Promise<void> => {
   const webhooks = await getWebhooks();
-  const filtered = webhooks.filter(w => w.id !== id);
+  const filtered = webhooks.filter((w) => w.id !== id);
   await saveWebhooks(filtered);
 };
 
-export const updateWebhook = async (id: string, updatedWebhook: Partial<Webhook>): Promise<void> => {
+export const updateWebhook = async (
+  id: string,
+  updatedWebhook: Partial<Webhook>
+): Promise<void> => {
   const webhooks = await getWebhooks();
-  const index = webhooks.findIndex(w => w.id === id);
+  const index = webhooks.findIndex((w) => w.id === id);
   if (index !== -1) {
     webhooks[index] = { ...webhooks[index], ...updatedWebhook };
     await saveWebhooks(webhooks);

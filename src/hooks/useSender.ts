@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Webhook } from '../types/webhook';
+import type { Webhook } from "../types/webhook";
 
 type TabInfo = {
   url?: string;
@@ -10,7 +10,11 @@ export const useSender = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
-  const sendWebhook = async (message: string, webhook: Webhook, tabInfo?: TabInfo) => {
+  const sendWebhook = async (
+    message: string,
+    webhook: Webhook,
+    tabInfo?: TabInfo
+  ) => {
     setIsLoading(true);
     setError("");
 
