@@ -1,41 +1,26 @@
-import { useState } from "react";
-import {
-  ChakraProvider,
-  Box,
-  Stack,
-  Button,
-  HStack,
-  defaultSystem,
-} from "@chakra-ui/react";
+import React from "react";
+import { ChakraProvider, Box, defaultSystem, Tabs } from "@chakra-ui/react";
 import { MainPage } from "./pages/MainPage";
 import { SettingsPage } from "./pages/SettingsPage";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<"main" | "settings">("main");
-
   return (
     <ChakraProvider value={defaultSystem}>
       <Box p={4} minW="400px" maxW="500px">
-        <Stack gap={4}>
-          <HStack gap={2} mb={4}>
-            <Button
-              variant={currentPage === "main" ? "solid" : "outline"}
-              onClick={() => setCurrentPage("main")}
-              size="sm"
-            >
-              Main
-            </Button>
-            <Button
-              variant={currentPage === "settings" ? "solid" : "outline"}
-              onClick={() => setCurrentPage("settings")}
-              size="sm"
-            >
-              Settings
-            </Button>
-          </HStack>
+        <Tabs.Root defaultValue="main" variant="enclosed">
+          <Tabs.List>
+            <Tabs.Trigger value="main">Main</Tabs.Trigger>
+            <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
+          </Tabs.List>
 
-          {currentPage === "main" ? <MainPage /> : <SettingsPage />}
-        </Stack>
+          <Tabs.Content value="main" pt={4}>
+            <MainPage />
+          </Tabs.Content>
+
+          <Tabs.Content value="settings" pt={4}>
+            <SettingsPage />
+          </Tabs.Content>
+        </Tabs.Root>
       </Box>
     </ChakraProvider>
   );

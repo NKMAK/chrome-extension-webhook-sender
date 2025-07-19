@@ -25,14 +25,16 @@ export const MainPage: React.FC = () => {
   };
 
   return (
-    <VStack gap={4} align="stretch">
+    <VStack gap={5} align="stretch">
       <WebhookSelector
         webhooks={webhooks}
         selectedWebhookId={selectedWebhookId}
         onWebhookSelect={setSelectedWebhookId}
         loading={webhooksLoading}
       />
+
       <MessageForm message={message} onMessageChange={setMessage} />
+
       <SendButton
         onSend={handleSend}
         disabled={!message.trim()}

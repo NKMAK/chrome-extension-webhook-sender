@@ -13,7 +13,8 @@
     "@chakra-ui/react": "^3.22.0",
     "@emotion/react": "^11.14.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.0.3",
