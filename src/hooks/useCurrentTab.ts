@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-interface TabInfo {
+type TabInfo = {
   url?: string;
   title?: string;
-}
+};
 
 export const useCurrentTab = () => {
   const [tabInfo, setTabInfo] = useState<TabInfo>({});
@@ -11,13 +11,16 @@ export const useCurrentTab = () => {
 
   const getCurrentTab = async () => {
     try {
-      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      const [tab] = await chrome.tabs.query({
+        active: true,
+        currentWindow: true,
+      });
       setTabInfo({
         url: tab.url,
         title: tab.title,
       });
     } catch (error) {
-      console.error('Failed to get current tab:', error);
+      console.error("Failed to get current tab:", error);
       setTabInfo({});
     } finally {
       setIsLoading(false);

@@ -1,23 +1,26 @@
 import { useState } from "react";
+import type { Webhook } from "../types/webhook";
 
-interface TabInfo {
+type TabInfo = {
   url?: string;
   title?: string;
-}
+};
 
 export const useSender = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
-  const sendWebhook = async (message: string, tabInfo?: TabInfo) => {
+  const sendWebhook = async (
+    message: string,
+    webhook: Webhook,
+    tabInfo?: TabInfo
+  ) => {
     setIsLoading(true);
     setError("");
 
     try {
-      const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_URL;
-
-      if (!WEBHOOK_URL) {
-        throw new Error("Webhook URL not configured");
+      if (!webhook?.url) {
+        throw new Error("Webhook not selected or URL not configured");
       }
 
       let finalMessage = message;
@@ -32,7 +35,7 @@ export const useSender = () => {
         content: finalMessage,
       };
 
-      const response = await fetch(WEBHOOK_URL, {
+      const response = await fetch(webhook.url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
