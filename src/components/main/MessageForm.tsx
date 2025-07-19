@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Text, Textarea } from '@chakra-ui/react';
+import React from "react";
+import { Box, Textarea } from "@chakra-ui/react";
 
 type MessageFormProps = {
   onMessageChange: (message: string) => void;
@@ -8,16 +8,15 @@ type MessageFormProps = {
 
 export const MessageForm: React.FC<MessageFormProps> = ({
   onMessageChange,
-  message
+  message,
 }) => {
   return (
     <Box>
-      <Text>Message:</Text>
       <Textarea
         id="message"
         value={message}
         onChange={(e) => onMessageChange(e.target.value)}
-        placeholder="Enter your message to send"
+        placeholder="input message"
         rows={4}
       />
     </Box>

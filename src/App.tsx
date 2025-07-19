@@ -15,7 +15,7 @@ function App() {
 
   return (
     <ChakraProvider value={defaultSystem}>
-      <Box p={4}>
+      <Box p={4} minW="400px" maxW="500px">
         <Stack gap={4}>
           <MessageForm message={message} onMessageChange={setMessage} />
           <SendButton

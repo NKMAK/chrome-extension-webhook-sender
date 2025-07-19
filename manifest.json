@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Webhook Sender",
+  "version": "1.0.0",
+  "description": "Send current page URL and custom messages via webhook",
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "Webhook Sender"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}
