@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Box, Button, Input, VStack, Field } from "@chakra-ui/react";
 import type { Webhook } from "../../types/webhook";
 
-interface WebhookFormProps {
+type WebhookFormProps = {
   onSubmit: (webhook: Webhook) => void;
-}
+};
 
 export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
   const [name, setName] = useState("");

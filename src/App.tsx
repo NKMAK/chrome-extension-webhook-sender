@@ -1,22 +1,10 @@
 import { useState } from "react";
 import { ChakraProvider, Box, Stack, Button, HStack, defaultSystem } from "@chakra-ui/react";
-import { MessageForm } from "./components/main/MessageForm";
-import { SendButton } from "./components/main/SendButton";
-import { SettingsPage } from "./components/settings/SettingsPage";
-import { useSender } from "./hooks/useSender";
-import { useCurrentTab } from "./hooks/useCurrentTab";
+import { MainPage } from "./pages/MainPage";
+import { SettingsPage } from "./pages/SettingsPage";
 
 function App() {
-  const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState<"main" | "settings">("main");
-  const { sendWebhook, isLoading } = useSender();
-  const { tabInfo } = useCurrentTab();
-
-  const handleSend = async () => {
-    if (message.trim()) {
-      await sendWebhook(message, tabInfo);
-    }
-  };
 
   return (
     <ChakraProvider value={defaultSystem}>
@@ -40,14 +28,7 @@ function App() {
           </HStack>
 
           {currentPage === "main" ? (
-            <>
-              <MessageForm message={message} onMessageChange={setMessage} />
-              <SendButton
-                onSend={handleSend}
-                disabled={!message.trim()}
-                isLoading={isLoading}
-              />
-            </>
+            <MainPage />
           ) : (
             <SettingsPage />
           )}

@@ -8,9 +8,9 @@ import {
   HStack,
   List,
 } from "@chakra-ui/react";
-import { useWebhooksCRUD } from "../../hooks/useWebhooksCRUD";
-import { WebhookForm } from "./WebhookForm";
-import type { Webhook } from "../../types/webhook";
+import { useWebhooksCRUD } from "../hooks/useWebhooksCRUD";
+import { WebhookForm } from "../components/settings/WebhookForm";
+import type { Webhook } from "../types/webhook";
 
 export const SettingsPage: React.FC = () => {
   const { webhooks, loading, createWebhook, deleteWebhook } = useWebhooksCRUD();
