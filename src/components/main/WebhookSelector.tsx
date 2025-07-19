@@ -63,12 +63,6 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
           </Menu.Trigger>
           <Menu.Positioner>
             <Menu.Content>
-              <Menu.Item
-                value="none"
-                onClick={() => onWebhookSelect(undefined)}
-              >
-                No webhook selected
-              </Menu.Item>
               {webhooks.map((webhook) => (
                 <Menu.Item
                   key={webhook.id}
