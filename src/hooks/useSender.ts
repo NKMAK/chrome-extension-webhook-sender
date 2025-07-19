@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Webhook } from "../types/webhook";
+import { createPayload } from "../utils/pipeline";
 
 type TabInfo = {
   url?: string;
@@ -31,9 +32,7 @@ export const useSender = () => {
         finalMessage = `${message}\n\n**Current Page:**\n**Title:** ${pageTitle}\n**URL:** ${pageUrl}`;
       }
 
-      const payload = {
-        content: finalMessage,
-      };
+      const payload = createPayload(finalMessage, webhook.platform);
 
       const response = await fetch(webhook.url, {
         method: "POST",

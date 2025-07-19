@@ -48,9 +48,8 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
         </Text>
         {selectedWebhook && (
           <HStack gap={1} ml="auto">
-            <Box w={2} h={2} bg={selectedWebhook.color} borderRadius="full" />
             <Text fontSize="xs" color="gray.600" fontWeight="medium">
-              {selectedWebhook.name}
+              {selectedWebhook.platform}
             </Text>
           </HStack>
         )}

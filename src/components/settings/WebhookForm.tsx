@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Box, Button, Input, VStack, Field } from "@chakra-ui/react";
-import type { Webhook } from "../../types/webhook";
+import { Box, Button, Input, VStack, Field, NativeSelect } from "@chakra-ui/react";
+import type { Webhook, Platform } from "../../types/webhook";
 
 type WebhookFormProps = {
   onSubmit: (webhook: Webhook) => void;
@@ -9,7 +9,7 @@ type WebhookFormProps = {
 export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
-  const [color, setColor] = useState("#FF5733");
+  const [platform, setPlatform] = useState<Platform>("discord");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,12 +18,12 @@ export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
         id: Date.now().toString(),
         name,
         url,
-        color,
+        platform,
       };
       onSubmit(webhook);
       setName("");
       setUrl("");
-      setColor("#FF5733");
+      setPlatform("discord");
     }
   };
 
@@ -49,13 +49,18 @@ export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Color</Field.Label>
-          <Input
-            type="color"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          />
+        <Field.Root required>
+          <Field.Label>Platform</Field.Label>
+          <NativeSelect.Root>
+            <NativeSelect.Field
+              value={platform}
+              onChange={(e) => setPlatform(e.target.value as Platform)}
+            >
+              <option value="discord">Discord</option>
+              <option value="slack">Slack</option>
+            </NativeSelect.Field>
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
         </Field.Root>
 
         <Button type="submit" colorScheme="blue" width="full">

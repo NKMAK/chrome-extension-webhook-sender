@@ -44,7 +44,9 @@ export const SettingsPage: React.FC = () => {
             {webhooks.map((webhook) => (
               <List.Item key={webhook.id}>
                 <HStack gap={3} align="center">
-                  <Box w={4} h={4} bg={webhook.color} borderRadius="sm" />
+                  <Text fontSize="xs" color="blue.600" fontWeight="bold" textTransform="uppercase">
+                    {webhook.platform}
+                  </Text>
                   <VStack align="start" gap={0} flex={1}>
                     <Text fontWeight="bold">{webhook.name}</Text>
                   </VStack>
