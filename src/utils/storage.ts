@@ -1,7 +1,6 @@
 import type { Webhook } from "../types/webhook";
 
-const getStorageKey = () =>
-  import.meta.env.VITE_WEBHOOK_STORAGE_KEY || "webhooks";
+const getStorageKey = () => import.meta.env.VITE_WEBHOOK_STORAGE_KEY;
 
 export const getWebhooks = async (): Promise<Webhook[]> => {
   const result = await chrome.storage.sync.get(getStorageKey());
