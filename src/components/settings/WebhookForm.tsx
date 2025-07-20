@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Box, Button, Input, VStack, Field, NativeSelect } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Input,
+  VStack,
+  Field,
+  NativeSelect,
+} from "@chakra-ui/react";
 import type { Webhook, Platform } from "../../types/webhook";
 
 type WebhookFormProps = {
@@ -40,7 +47,7 @@ export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
         </Field.Root>
 
         <Field.Root required>
-          <Field.Label>URL</Field.Label>
+          <Field.Label>Webhook URL</Field.Label>
           <Input
             type="url"
             value={url}
@@ -63,7 +70,7 @@ export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
           </NativeSelect.Root>
         </Field.Root>
 
-        <Button 
+        <Button
           type="submit"
           disabled={!name || !url}
           bg="blue.500"
