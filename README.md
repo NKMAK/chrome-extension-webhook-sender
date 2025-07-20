@@ -72,9 +72,9 @@ The development server provides hot reload for faster development.
    - Click "Send"
 
 2. **Via Context Menu**:
-   - Right-click anywhere on a webpage
-   - Select "webhook-sender" from the context menu
-   - The extension will open with the page URL pre-selected
+   - Select text on any webpage and right-click
+   - Choose "webhook-sender" from the context menu
+   - The extension will open with the selected text pre-filled in the message field
 
 ### 3. Message Format
 
