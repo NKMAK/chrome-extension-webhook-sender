@@ -11,8 +11,7 @@ A Chrome extension that allows you to quickly send the current page URL, title, 
 - **Current Page Integration**: Automatically includes current page title and URL in messages
 - **Context Menu Integration**: Right-click on any page to quickly access the extension
 - **Platform-Specific Formatting**: Optimized message formats for Discord and Slack
-- **Input Validation**: Ensures only valid webhook URLs are accepted
-- **Modern UI**: Clean, responsive interface built with Chakra UI
+
 
 ## 🚀 Quick Start
 
