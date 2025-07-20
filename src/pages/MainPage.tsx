@@ -22,7 +22,7 @@ export const MainPage: React.FC<MainPageProps> = ({ webhooksCRUD }) => {
 
   const { sendWebhook, isLoading } = useSender();
   const { tabInfo } = useCurrentTab();
-  const { selectedText } = useSelectedText();
+  const { selectedText, clearSelectedText } = useSelectedText();
   const { webhooks, loading: webhooksLoading } = webhooksCRUD;
 
   useEffect(() => {
@@ -40,6 +40,7 @@ export const MainPage: React.FC<MainPageProps> = ({ webhooksCRUD }) => {
       try {
         await sendWebhook(message, selectedWebhook, tabInfo);
         setMessage("");
+        clearSelectedText();
         toaster.create({
           title: "Send success",
           type: "success",
