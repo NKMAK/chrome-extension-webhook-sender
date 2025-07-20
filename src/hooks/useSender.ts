@@ -29,27 +29,35 @@ export const useSender = () => {
       if (tabInfo?.url) {
         const pageTitle = tabInfo?.title;
         const pageUrl = tabInfo?.url;
-        finalMessage = `${message}\n\n**Current Page:**\n**Title:** ${pageTitle}\n**URL:** ${pageUrl}`;
+        finalMessage = `${message}\n\nTitle: ${pageTitle}\nURL: ${pageUrl}`;
       }
 
       const payload = createPayload(finalMessage, webhook.platform);
 
-      const response = await fetch(webhook.url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await new Promise<{ success: boolean; error?: string }>(
+        (resolve) => {
+          chrome.runtime.sendMessage(
+            {
+              action: "sendWebhook",
+              url: webhook.url,
+              payload,
+            },
+            (response) => {
+              resolve(response);
+            }
+          );
+        }
+      );
 
-      if (!response.ok) {
-        throw new Error(`Failed to send message: ${response.status}`);
+      if (!response.success) {
+        throw new Error(response.error);
       }
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "Unknown error occurred";
       setError(errorMessage);
       console.error("Send error:", err);
+      throw err;
     } finally {
       setIsLoading(false);
     }
