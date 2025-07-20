@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
-import { Box, Text, HStack, NativeSelect, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  HStack,
+  NativeSelect,
+  Button,
+  Badge,
+} from "@chakra-ui/react";
 import { LuSend } from "react-icons/lu";
+import { getPlatformColor } from "../../utils/pipeline";
 import type { Webhook } from "../../types/webhook";
 
 type WebhookSelectorProps = {
@@ -53,10 +61,17 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
           Send to
         </Text>
         {selectedWebhook && (
-          <HStack gap={1} ml="auto">
-            <Text fontSize="xs" color="gray.600" fontWeight="medium">
+          <HStack gap={2} ml="auto">
+            <Badge
+              bg={getPlatformColor(selectedWebhook.platform)}
+              color="white"
+              textTransform="uppercase"
+              fontSize="xs"
+              px={2}
+              py={1}
+            >
               {selectedWebhook.platform}
-            </Text>
+            </Badge>
           </HStack>
         )}
       </HStack>
