@@ -41,14 +41,15 @@ export const MainPage: React.FC<MainPageProps> = ({ webhooksCRUD }) => {
         await sendWebhook(message, selectedWebhook, tabInfo);
         setMessage("");
         toaster.create({
-          title: "Message sent successfully!",
+          title: "Send success",
           type: "success",
           duration: 3000,
         });
       } catch (err) {
         toaster.create({
           title: "Failed to send message",
-          description: err instanceof Error ? err.message : "Unknown error occurred",
+          description:
+            err instanceof Error ? err.message : "Unknown error occurred",
           type: "error",
           duration: 5000,
         });
