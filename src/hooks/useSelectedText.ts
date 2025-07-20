@@ -19,5 +19,9 @@ export const useSelectedText = () => {
     getSelectedText();
   }, []);
 
-  return { selectedText };
+  const clearSelectedText = () => {
+    setSelectedText("");
+  };
+
+  return { selectedText, clearSelectedText };
 };
