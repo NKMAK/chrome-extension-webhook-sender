@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { VStack } from "@chakra-ui/react";
 import { MessageForm } from "../components/main/MessageForm";
 import { SendButton } from "../components/main/SendButton";
 import { WebhookSelector } from "../components/main/WebhookSelector";
 import { useSender } from "../hooks/useSender";
 import { useCurrentTab } from "../hooks/useCurrentTab";
+import { useSelectedText } from "../hooks/useSelectedText";
 import type { Webhook, WebhooksCRUD } from "../types/webhook";
 
 type MainPageProps = {
@@ -17,7 +18,14 @@ export const MainPage: React.FC<MainPageProps> = ({ webhooksCRUD }) => {
 
   const { sendWebhook, isLoading } = useSender();
   const { tabInfo } = useCurrentTab();
+  const { selectedText } = useSelectedText();
   const { webhooks, loading: webhooksLoading } = webhooksCRUD;
+
+  useEffect(() => {
+    if (selectedText && !message) {
+      setMessage(selectedText);
+    }
+  }, [selectedText, message]);
 
   const selectedWebhook = webhooks.find(
     (w: Webhook) => w.id === selectedWebhookId

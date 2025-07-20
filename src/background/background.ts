@@ -1,3 +1,23 @@
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: "webhook-sender",
+    title: "webhook-sender",
+    contexts: ["selection", "page"],
+  });
+});
+
+chrome.contextMenus.onClicked.addListener((info) => {
+  if (info.menuItemId === "webhook-sender") {
+    if (info.selectionText) {
+      chrome.storage.local.set({ selectedText: info.selectionText });
+    } else {
+      chrome.storage.local.remove("selectedText");
+    }
+
+    chrome.action.openPopup();
+  }
+});
+
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   if (request.action === "sendWebhook") {
     const { url, payload } = request;
