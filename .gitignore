@@ -26,3 +26,4 @@ CLAUDE.md
 /mockImage
 /claude
 .env
+package-lock.json
