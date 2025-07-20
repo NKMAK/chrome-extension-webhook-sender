@@ -34,16 +34,21 @@ export const useSender = () => {
 
       const payload = createPayload(finalMessage, webhook.platform);
 
-      const response = await fetch(webhook.url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await new Promise<{ success: boolean; error?: string }>(
+        (resolve) => {
+          chrome.runtime.sendMessage(
+            {
+              action: "sendWebhook",
+              url: webhook.url,
+              payload,
+            },
+            resolve
+          );
+        }
+      );
 
-      if (!response.ok) {
-        throw new Error(`Failed to send message: ${response.status}`);
+      if (!response.success) {
+        throw new Error(response.error);
       }
     } catch (err) {
       const errorMessage =

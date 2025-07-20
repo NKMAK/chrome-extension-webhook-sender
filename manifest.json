@@ -10,5 +10,14 @@
   "permissions": [
     "activeTab",
     "storage"
-  ]
+  ],
+  "host_permissions": [
+    "https://hooks.slack.com/*",
+    "https://discord.com/*",
+    "https://discordapp.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/background.ts",
+    "type": "module"
+  }
 }
