@@ -67,7 +67,6 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
             boxShadow: "0 0 0 1px var(--chakra-colors-blue-500)",
           }}
         >
-          <option value="">Choose your destination...</option>
           {webhooks.map((webhook) => (
             <option key={webhook.id} value={webhook.id}>
               {webhook.name}

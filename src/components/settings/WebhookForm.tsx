@@ -64,11 +64,12 @@ export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
         </Field.Root>
 
         <Button 
-          type="submit" 
-          bg="blue.500" 
+          type="submit"
+          disabled={!name || !url}
+          bg="blue.500"
           color="white"
-          _hover={{ bg: "blue.600" }}
-          _active={{ bg: "blue.700" }}
+          _hover={{ bg: "blue.500" }}
+          _active={{ bg: "blue.500" }}
           border="1px solid"
           borderColor="blue.500"
           borderRadius="md"
