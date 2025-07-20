@@ -28,11 +28,6 @@ export const MessageForm: React.FC<MessageFormProps> = ({
             Message
           </Text>
         </HStack>
-        {message.length > 0 && (
-          <Text fontSize="xs" color="gray.500">
-            {message.length} chars
-          </Text>
-        )}
       </HStack>
       <Textarea
         id="message"

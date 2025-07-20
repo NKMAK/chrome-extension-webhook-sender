@@ -29,7 +29,7 @@ export const useSender = () => {
       if (tabInfo?.url) {
         const pageTitle = tabInfo?.title;
         const pageUrl = tabInfo?.url;
-        finalMessage = `${message}\n\n**Current Page:**\n**Title:** ${pageTitle}\n**URL:** ${pageUrl}`;
+        finalMessage = `${message}\n\nTitle: ${pageTitle}\nURL: ${pageUrl}`;
       }
 
       const payload = createPayload(finalMessage, webhook.platform);
