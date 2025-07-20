@@ -5,7 +5,8 @@
   "description": "Send current page URL and custom messages via webhook",
   "action": {
     "default_popup": "src/popup.html",
-    "default_title": "Webhook Sender"
+    "default_title": "Webhook Sender",
+    "default_icon": "src/assets/icon.png"
   },
   "permissions": [
     "activeTab",
