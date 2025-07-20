@@ -43,6 +43,7 @@ export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="memo"
+            autoComplete="off"
           />
         </Field.Root>
 
@@ -53,6 +54,7 @@ export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://..."
+            autoComplete="off"
           />
         </Field.Root>
 
