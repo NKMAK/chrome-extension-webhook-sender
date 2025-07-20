@@ -10,13 +10,16 @@ import {
   Badge,
   Input,
 } from "@chakra-ui/react";
-import { useWebhooksCRUD } from "../hooks/useWebhooksCRUD";
 import { WebhookForm } from "../components/settings/WebhookForm";
 import { getPlatformColor } from "../utils/pipeline";
-import type { Webhook } from "../types/webhook";
+import type { Webhook, WebhooksCRUD } from "../types/webhook";
 
-export const SettingsPage: React.FC = () => {
-  const { webhooks, loading, createWebhook, deleteWebhook } = useWebhooksCRUD();
+type SettingsPageProps = {
+  webhooksCRUD: WebhooksCRUD;
+};
+
+export const SettingsPage: React.FC<SettingsPageProps> = ({ webhooksCRUD }) => {
+  const { webhooks, loading, createWebhook, deleteWebhook } = webhooksCRUD;
 
   const handleAddWebhook = (webhook: Webhook) => {
     createWebhook(webhook);
