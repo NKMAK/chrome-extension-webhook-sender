@@ -2,6 +2,9 @@
 
 A Chrome extension that allows you to quickly send the current page URL, title, and custom messages to Discord or Slack webhooks with a simple click.
 
+## 👀 Demo
+<img src="https://github.com/user-attachments/assets/f8367f8c-dda5-45c2-a2b4-962f6f257d14" alt="webhook-sender-demo" width="800"/>
+
 ## ✨ Features
 
 - **Webhook Support**: Store and manage Discord and Slack webhook URLs
