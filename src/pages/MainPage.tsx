@@ -5,17 +5,21 @@ import { SendButton } from "../components/main/SendButton";
 import { WebhookSelector } from "../components/main/WebhookSelector";
 import { useSender } from "../hooks/useSender";
 import { useCurrentTab } from "../hooks/useCurrentTab";
-import { useWebhooksCRUD } from "../hooks/useWebhooksCRUD";
+import type { Webhook, WebhooksCRUD } from "../types/webhook";
 
-export const MainPage: React.FC = () => {
+type MainPageProps = {
+  webhooksCRUD: WebhooksCRUD;
+};
+
+export const MainPage: React.FC<MainPageProps> = ({ webhooksCRUD }) => {
   const [message, setMessage] = useState("");
   const [selectedWebhookId, setSelectedWebhookId] = useState<string>();
 
   const { sendWebhook, isLoading } = useSender();
   const { tabInfo } = useCurrentTab();
-  const { webhooks, loading: webhooksLoading } = useWebhooksCRUD();
+  const { webhooks, loading: webhooksLoading } = webhooksCRUD;
 
-  const selectedWebhook = webhooks.find((w) => w.id === selectedWebhookId);
+  const selectedWebhook = webhooks.find((w: Webhook) => w.id === selectedWebhookId);
 
   const handleSend = async () => {
     if (message.trim() && selectedWebhook) {

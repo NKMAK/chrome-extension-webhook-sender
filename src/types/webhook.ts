@@ -6,3 +6,12 @@ export type Webhook = {
   url: string;
   platform: Platform;
 };
+
+export type WebhooksCRUD = {
+  webhooks: Webhook[];
+  loading: boolean;
+  createWebhook: (webhook: Webhook) => Promise<void>;
+  deleteWebhook: (id: string) => Promise<void>;
+  editWebhook: (id: string, updatedWebhook: Partial<Webhook>) => Promise<void>;
+  refreshWebhooks: () => Promise<void>;
+};

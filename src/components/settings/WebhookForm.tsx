@@ -63,7 +63,19 @@ export const WebhookForm: React.FC<WebhookFormProps> = ({ onSubmit }) => {
           </NativeSelect.Root>
         </Field.Root>
 
-        <Button type="submit" colorScheme="blue" width="full">
+        <Button 
+          type="submit"
+          disabled={!name || !url}
+          bg="blue.500"
+          color="white"
+          _hover={{ bg: "blue.500" }}
+          _active={{ bg: "blue.500" }}
+          border="1px solid"
+          borderColor="blue.500"
+          borderRadius="md"
+          width="full"
+          py={3}
+        >
           Add Webhook
         </Button>
       </VStack>
