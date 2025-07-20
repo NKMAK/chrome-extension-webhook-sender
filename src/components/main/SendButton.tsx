@@ -20,7 +20,14 @@ export const SendButton: React.FC<SendButtonProps> = ({
       disabled={disabled || !hasWebhookSelected}
       loading={isLoading}
       loadingText="Sending"
-      colorScheme={hasWebhookSelected ? "blue" : "gray"}
+      bg={hasWebhookSelected ? "blue.500" : "gray.300"}
+      color="white"
+      _hover={{ bg: hasWebhookSelected ? "blue.600" : "gray.400" }}
+      _active={{ bg: hasWebhookSelected ? "blue.700" : "gray.500" }}
+      border="1px solid"
+      borderColor={hasWebhookSelected ? "blue.500" : "gray.300"}
+      borderRadius="md"
+      py={3}
     >
       {hasWebhookSelected ? "Send" : "Select webhook to send"}
     </Button>

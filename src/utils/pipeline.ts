@@ -10,3 +10,14 @@ export const createPayload = (message: string, platform: Platform) => {
       return { content: message };
   }
 };
+
+export const getPlatformColor = (platform: Platform): string => {
+  switch (platform) {
+    case 'discord':
+      return '#5865F2';
+    case 'slack':
+      return '#4A154B';
+    default:
+      return '#5865F2';
+  }
+};
