@@ -34,6 +34,17 @@ A Chrome extension that allows you to quickly send the current page URL, title, 
    npm install
    ```
 
+3. **Environment Setup**
+
+   Create a `.env` file in the project root:
+
+   ```bash
+   # Storage key for webhook data in chrome.storage.sync
+   VITE_WEBHOOK_STORAGE_KEY=webhook_sender_unique_key
+   ```
+
+   - `VITE_WEBHOOK_STORAGE_KEY`: Unique identifier for storing webhook data in Chrome's sync storage
+
 3. **Build the extension**
 
    ```bash
