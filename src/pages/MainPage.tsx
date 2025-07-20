@@ -20,7 +20,7 @@ export const MainPage: React.FC<MainPageProps> = ({ webhooksCRUD }) => {
   const [message, setMessage] = useState("");
   const [selectedWebhookId, setSelectedWebhookId] = useState<string>();
 
-  const { sendWebhook, isLoading, error } = useSender();
+  const { sendWebhook, isLoading } = useSender();
   const { tabInfo } = useCurrentTab();
   const { selectedText } = useSelectedText();
   const { webhooks, loading: webhooksLoading } = webhooksCRUD;
@@ -45,10 +45,10 @@ export const MainPage: React.FC<MainPageProps> = ({ webhooksCRUD }) => {
           type: "success",
           duration: 3000,
         });
-      } catch {
+      } catch (err) {
         toaster.create({
           title: "Failed to send message",
-          description: error,
+          description: err instanceof Error ? err.message : "Unknown error occurred",
           type: "error",
           duration: 5000,
         });

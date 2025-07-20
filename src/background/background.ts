@@ -21,6 +21,18 @@ chrome.contextMenus.onClicked.addListener((info) => {
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   if (request.action === "sendWebhook") {
     const { url, payload } = request;
+    
+    const isSlackWebhook = url.includes("hooks.slack.com");
+    const isDiscordWebhook = url.includes("discord.com/api/webhooks");
+
+    if (!isSlackWebhook && !isDiscordWebhook) {
+      sendResponse({
+        success: false,
+        error:
+          "Invalid webhook URL. Please use a valid Discord or Slack webhook URL.",
+      });
+      return true;
+    }
 
     fetch(url, {
       method: "POST",

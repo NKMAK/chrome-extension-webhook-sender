@@ -42,7 +42,9 @@ export const useSender = () => {
               url: webhook.url,
               payload,
             },
-            resolve
+            (response) => {
+              resolve(response);
+            }
           );
         }
       );
@@ -55,6 +57,7 @@ export const useSender = () => {
         err instanceof Error ? err.message : "Unknown error occurred";
       setError(errorMessage);
       console.error("Send error:", err);
+      throw err;
     } finally {
       setIsLoading(false);
     }
