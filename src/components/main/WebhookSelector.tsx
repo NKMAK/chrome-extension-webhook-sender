@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Text, HStack, NativeSelect, Button } from "@chakra-ui/react";
 import { LuSend } from "react-icons/lu";
 import type { Webhook } from "../../types/webhook";
@@ -16,6 +16,12 @@ export const WebhookSelector: React.FC<WebhookSelectorProps> = ({
   onWebhookSelect,
   loading = false,
 }) => {
+  useEffect(() => {
+    if (webhooks.length > 0 && !selectedWebhookId) {
+      onWebhookSelect(webhooks[0].id);
+    }
+  }, [webhooks, selectedWebhookId, onWebhookSelect]);
+
   const selectedWebhook = webhooks.find((w) => w.id === selectedWebhookId);
   if (loading) {
     return (

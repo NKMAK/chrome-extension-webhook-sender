@@ -19,7 +19,9 @@ export const MainPage: React.FC<MainPageProps> = ({ webhooksCRUD }) => {
   const { tabInfo } = useCurrentTab();
   const { webhooks, loading: webhooksLoading } = webhooksCRUD;
 
-  const selectedWebhook = webhooks.find((w: Webhook) => w.id === selectedWebhookId);
+  const selectedWebhook = webhooks.find(
+    (w: Webhook) => w.id === selectedWebhookId
+  );
 
   const handleSend = async () => {
     if (message.trim() && selectedWebhook) {
