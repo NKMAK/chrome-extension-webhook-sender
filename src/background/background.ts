@@ -1,3 +1,5 @@
+import { isValidWebhookUrl } from "../utils/validation";
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "webhook-sender",
@@ -21,11 +23,8 @@ chrome.contextMenus.onClicked.addListener((info) => {
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   if (request.action === "sendWebhook") {
     const { url, payload } = request;
-    
-    const isSlackWebhook = url.includes("hooks.slack.com");
-    const isDiscordWebhook = url.includes("discord.com/api/webhooks");
 
-    if (!isSlackWebhook && !isDiscordWebhook) {
+    if (!isValidWebhookUrl(url)) {
       sendResponse({
         success: false,
         error:
